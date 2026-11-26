@@ -3,26 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Grammar — Inglés</title>
-  <link rel="stylesheet" href="../assets/style.css">
+  <title>Phrases and clauses — Inglés</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="phrases-clauses.css">
 </head>
 <body>
   <main class="contenedor">
-    <div class="migas"><a href="../index.html">Inicio</a> / Grammar</div>
-    <h1>Grammar</h1>
-    <p class="sub">Actividades de gramática.</p>
+    <div class="migas">
+      <a href="../../index.html">Inicio</a> /
+      <a href="../index.html">Grammar</a> /
+      Phrases and clauses
+    </div>
 
-    <!-- Para sumar una actividad nueva: copiar un bloque <a class="opcion"> -->
-    <nav class="opciones">
-      <a class="opcion" href="sentence-types/index.html">
-        <strong>Sentence types by structure</strong>
-        <span>Simple, compound, complex y compound-complex. 10 oraciones al azar.</span>
-      </a>
-      <a class="opcion" href="phrases-clauses/index.html">
-  <strong>Phrases and clauses</strong>
-  <span>Marcar frases y cláusulas con corchetes, incluso anidadas. 10 oraciones al azar.</span>
-</a>
-    </nav>
+    <h1>Phrases and clauses</h1>
+    <p class="sub">Encerrá entre corchetes las frases y cláusulas de cada oración. Pueden ir anidadas.</p>
+
+    <!-- Ayuda desplegable: formato y criterios -->
+    <details class="ayuda">
+      <summary>Cómo se marca</summary>
+      <p>Formato: <strong>[ETIQUETA texto]</strong>. Un corchete puede ir dentro de otro.</p>
+      <p>Ejemplo:</p>
+      <p class="arbol" id="ejemplo"></p>
+      <ul>
+        <li><strong>NP</strong> noun phrase, <strong>VP</strong> verb phrase (solo el grupo verbal), <strong>PP</strong> prepositional phrase, <strong>AdvP</strong> adverb phrase, <strong>AdjP</strong> adjective phrase.</li>
+        <li><strong>IND</strong> cláusula independiente, <strong>SUB</strong> cláusula dependiente (también las no finitas: <em>-ing</em>, <em>to</em> + verbo).</li>
+        <li>Solo se marcan grupos de dos o más palabras. Las cláusulas se marcan siempre.</li>
+        <li>La etiqueta indica la forma: una PP que hace de adverbio sigue siendo PP.</li>
+        <li>Una PP que modifica a un sustantivo va dentro del NP.</li>
+        <li>Los elementos coordinados van como una sola unidad (<em>Horace or Morris</em>).</li>
+      </ul>
+    </details>
+
+    <!-- Barra de herramientas: la arma el script a partir de las etiquetas -->
+    <div class="barra">
+      <p class="ayuda-barra">Seleccioná palabras en una oración y tocá una etiqueta: se rodean con corchetes.</p>
+      <div class="fila" id="barra"></div>
+    </div>
+
+    <!-- Acá el script dibuja las 10 oraciones -->
+    <div id="lista"></div>
+
+    <div class="acciones">
+      <button id="btn-respuestas" type="button">Ver respuestas</button>
+      <button id="btn-nuevo" type="button" class="secundario">Nuevo set de 10</button>
+    </div>
   </main>
+
+  <!-- Orden de carga: oraciones, respuestas y por último la lógica -->
+  <script src="../data/sentences.js"></script>
+  <script src="../data/analysis.js"></script>
+  <script src="phrases-clauses.js"></script>
 </body>
 </html>

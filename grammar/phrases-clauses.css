@@ -1,0 +1,86 @@
+/* ==========================================================
+   phrases-clauses.css — estilos propios de esta actividad
+   (se carga DESPUÉS de assets/style.css y solo agrega cosas nuevas)
+   ========================================================== */
+
+/* Barra de herramientas fija arriba: actúa sobre la oración en la que escribís */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--fondo);
+  border-bottom: 1px solid var(--linea);
+  padding: 0.6rem 0;
+  margin-bottom: 1rem;
+}
+.barra .fila { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.barra button {
+  padding: 0.4rem 0.7rem;
+  background: var(--papel);
+  color: var(--texto);
+  border: 1px solid var(--linea);
+  font-weight: 600;
+}
+.barra .ayuda-barra { font-size: 0.85rem; color: var(--suave); margin: 0 0 0.5rem; }
+
+/* Colores por etiqueta: --c es "r, g, b" para poder usarlo con transparencia */
+.g-NP   { --c: 29, 78, 137; }
+.g-VP   { --c: 30, 122, 70; }
+.g-PP   { --c: 122, 59, 158; }
+.g-AdvP { --c: 180, 95, 6; }
+.g-AdjP { --c: 14, 116, 144; }
+.g-IND  { --c: 55, 65, 81; }
+.g-SUB  { --c: 179, 38, 30; }
+
+/* Los botones de la barra heredan el color de su etiqueta */
+.barra button[data-etiqueta] { color: rgb(var(--c)); border-color: rgba(var(--c), 0.5); }
+.barra button.neutro { color: var(--acento); }
+
+/* Campo de texto donde se escriben los corchetes */
+textarea.analisis {
+  width: 100%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  resize: vertical;
+}
+textarea.analisis:focus { outline: 2px solid var(--acento); outline-offset: 1px; }
+textarea.analisis:disabled { background: #f3f1ec; color: var(--texto); }
+
+/* Estado de los corchetes mientras escribís (solo sintaxis, no corrige el análisis) */
+.estado { font-size: 0.85rem; color: var(--suave); margin: 0.3rem 0 0; }
+.estado.alerta { color: var(--mal); }
+
+/* Respuesta correcta dibujada con grupos anidados */
+.respuesta {
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--linea);
+}
+.respuesta .rotulo { font-size: 0.85rem; color: var(--suave); margin: 0 0 0.2rem; }
+.arbol {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  line-height: 2.3;      /* aire para que quepan las etiquetas pequeñas */
+  margin: 0 0 0.6rem;
+}
+.grupo {
+  background: rgba(var(--c), 0.07);  /* al anidarse, los fondos se van acumulando */
+  border-radius: 3px;
+}
+.corchete { color: rgb(var(--c)); font-weight: 700; }
+.etq {
+  color: rgb(var(--c));
+  font-family: system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.clasif, .nota { margin: 0.3rem 0 0; font-size: 0.95rem; }
+.nota { color: var(--suave); }
+
+/* Ejemplo de la ayuda */
+details.ayuda .arbol { font-size: 1rem; margin: 0.4rem 0; }
+details.ayuda ul { margin: 0.4rem 0 0.2rem; padding-left: 1.2rem; }
