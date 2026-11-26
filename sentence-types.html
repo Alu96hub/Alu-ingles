@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentence types by structure — Inglés</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="contenedor">
+    <div class="migas">
+      <a href="index.html">Inicio</a> / <a href="grammar.html">Grammar</a> / Sentence types
+    </div>
+
+    <h1>Sentence types by structure</h1>
+    <p class="sub">Clasificá cada oración. Si es complex, indicá también qué tipo de cláusula dependiente tiene.</p>
+
+    <!-- Ayuda desplegable con las definiciones -->
+    <details class="ayuda">
+      <summary>Ver definiciones</summary>
+      <dl>
+        <dt>Simple</dt>
+        <dd>Una cláusula independiente.</dd>
+        <dt>Compound</dt>
+        <dd>Al menos dos cláusulas independientes.</dd>
+        <dt>Complex</dt>
+        <dd>Una cláusula independiente y al menos una dependiente.</dd>
+        <dt>Compound-complex</dt>
+        <dd>Dos o más cláusulas independientes y al menos una dependiente.</dd>
+      </dl>
+    </details>
+
+    <!-- Acá el script dibuja las 10 oraciones -->
+    <div id="lista"></div>
+
+    <div class="acciones">
+      <button id="btn-corregir" type="button">Corregir</button>
+      <button id="btn-nuevo" type="button" class="secundario">Nuevo set de 10</button>
+      <span id="puntaje" class="puntaje" aria-live="polite"></span>
+    </div>
+    <p id="aviso" class="aviso"></p>
+  </main>
+
+  <!-- Primero los datos, después la lógica (el orden importa) -->
+  <script src="sentence-types-data.js"></script>
+  <script src="sentence-types.js"></script>
+</body>
+</html>

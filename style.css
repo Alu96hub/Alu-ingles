@@ -1,0 +1,139 @@
+/* ==========================================================
+   style.css — estilos compartidos de todas las páginas
+   Estética sencilla: fondo claro, un solo color de acento,
+   serif (Georgia) para las oraciones y sans del sistema para la interfaz.
+   ========================================================== */
+
+:root {
+  --fondo: #fbfaf7;
+  --papel: #ffffff;
+  --texto: #1f2933;
+  --suave: #6b7280;
+  --linea: #dcd8cf;
+  --acento: #1d4e89;
+  --acento-fondo: #e8eff8;
+  --ok: #1e7a46;
+  --ok-fondo: #e6f4ea;
+  --mal: #b3261e;
+  --mal-fondo: #fdecea;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+/* Contenedor central: limita el ancho de línea para leer cómodo */
+.contenedor {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 4rem;
+}
+
+/* Barra superior con migas de pan (Inicio / Grammar / ...) */
+.migas {
+  font-size: 0.9rem;
+  color: var(--suave);
+  margin-bottom: 1.5rem;
+}
+.migas a { color: var(--acento); text-decoration: none; }
+.migas a:hover { text-decoration: underline; }
+
+h1 { font-size: 1.7rem; margin: 0 0 0.25rem; }
+.sub { color: var(--suave); margin: 0 0 1.5rem; }
+
+/* Lista de enlaces grandes (index, grammar, language) */
+.opciones { display: grid; gap: 0.75rem; }
+.opcion {
+  display: block;
+  padding: 1rem 1.1rem;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+.opcion:hover { border-color: var(--acento); }
+.opcion strong { display: block; font-size: 1.1rem; color: var(--acento); }
+.opcion span { color: var(--suave); font-size: 0.95rem; }
+.opcion.pendiente { opacity: 0.6; pointer-events: none; }
+
+/* ---------- Actividad ---------- */
+
+/* Caja de ayuda con las definiciones (se abre/cierra con <details>) */
+details.ayuda {
+  background: var(--acento-fondo);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+details.ayuda summary { cursor: pointer; font-weight: 600; color: var(--acento); }
+details.ayuda dl { margin: 0.75rem 0 0.25rem; }
+details.ayuda dt { font-weight: 600; margin-top: 0.5rem; }
+details.ayuda dd { margin: 0; }
+
+/* Tarjeta de cada oración */
+.item {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-left: 4px solid var(--linea);
+  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.9rem;
+}
+.item .oracion {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+}
+.item .num { color: var(--suave); font-family: system-ui, sans-serif; font-size: 0.9rem; margin-right: 0.4rem; }
+
+.selectores { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+select {
+  font: inherit;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  background: var(--papel);
+  color: var(--texto);
+  min-width: 11rem;
+}
+select:focus-visible, button:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+.oculto { display: none; }
+
+/* Estados tras corregir */
+.item.correcto { border-left-color: var(--ok); background: var(--ok-fondo); }
+.item.incorrecto { border-left-color: var(--mal); background: var(--mal-fondo); }
+.item .resultado { margin: 0.6rem 0 0; font-size: 0.95rem; }
+.item.correcto .resultado { color: var(--ok); }
+.item.incorrecto .resultado { color: var(--mal); }
+
+/* Barra de acciones y puntaje */
+.acciones { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin-top: 1.25rem; }
+button {
+  font: inherit;
+  padding: 0.55rem 1.1rem;
+  border-radius: 4px;
+  border: 1px solid var(--acento);
+  background: var(--acento);
+  color: #fff;
+  cursor: pointer;
+}
+button.secundario { background: var(--papel); color: var(--acento); }
+button:disabled { opacity: 0.5; cursor: default; }
+.puntaje { font-weight: 600; }
+.aviso { color: var(--suave); font-size: 0.9rem; margin-top: 0.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
