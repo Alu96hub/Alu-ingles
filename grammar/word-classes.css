@@ -1,0 +1,129 @@
+/* ==========================================================
+   word-classes.css — estilos propios de la actividad
+   (se carga DESPUÉS de assets/style.css)
+   ========================================================== */
+
+/* Espacio al final para que el panel inferior no tape las últimas oraciones */
+.contenedor { padding-bottom: 60vh; }
+
+/* Colores por clase: --c es "r, g, b" para poder usarlo con transparencia */
+.c-noun  { --c: 29, 78, 137; }
+.c-pron  { --c: 122, 59, 158; }
+.c-verb  { --c: 30, 122, 70; }
+.c-adj   { --c: 14, 116, 144; }
+.c-adv   { --c: 180, 95, 6; }
+.c-prep  { --c: 190, 24, 93; }
+.c-conj  { --c: 71, 85, 105; }
+.c-inter { --c: 161, 98, 7; }
+.c-det   { --c: 67, 56, 202; }
+.c-oth   { --c: 107, 114, 128; }
+
+/* Oración: interlineado amplio porque cada palabra lleva una etiqueta debajo */
+.frase {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  margin: 0.3rem 0 0.2rem;
+}
+
+/* Cada palabra es un botón con la etiqueta de su clase abajo */
+.pal {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+  margin: 0 0.05rem 0.45rem;
+  padding: 0.1rem 0.3rem 0.05rem;
+  background: none;
+  color: var(--texto);
+  font: inherit;
+  border: 1px dashed var(--linea);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.pal .etq {
+  font-family: system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  min-height: 0.8rem;       /* reserva el alto aunque todavía no tenga etiqueta */
+}
+.pal[class*="c-"] {
+  background: rgba(var(--c), 0.1);
+  border: 1px solid rgba(var(--c), 0.55);
+}
+.pal[class*="c-"] .etq { color: rgb(var(--c)); }
+
+/* Palabra seleccionada: el panel inferior trabaja sobre esta */
+.pal.activa { outline: 2px solid var(--acento); outline-offset: 1px; }
+
+/* Resultado de la corrección */
+.pal.ok  { box-shadow: 0 0 0 2px var(--ok); }
+.pal.mal { box-shadow: 0 0 0 2px var(--mal); }
+
+/* Informe debajo de cada oración al corregir */
+.informe { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px dashed var(--linea); font-size: 0.95rem; }
+.informe p { margin: 0.2rem 0; }
+.informe .aciertos { font-weight: 600; }
+.informe ul { margin: 0.3rem 0; padding-left: 1.1rem; }
+.informe li { margin-bottom: 0.3rem; }
+.informe .mala { color: var(--mal); }
+.informe .nota { color: var(--suave); }
+
+/* ---------- Panel inferior ---------- */
+.panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  max-height: 52vh;
+  overflow-y: auto;
+  background: var(--papel);
+  border-top: 2px solid var(--acento);
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.12);
+  padding: 0.6rem 1rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
+}
+.panel[hidden] { display: none; }
+
+.panel button {
+  padding: 0.5rem 0.7rem;
+  background: var(--papel);
+  color: var(--texto);
+  border: 1px solid var(--linea);
+  font-weight: 600;
+}
+
+/* Cabecera: anterior / palabra / siguiente / cerrar */
+.panel-cab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.panel-cab strong { flex: 1; text-align: center; font-size: 1.1rem; }
+.panel-cab .contador { font-size: 0.8rem; color: var(--suave); font-weight: 400; }
+
+/* Rejilla de botones (clases o subtipos) */
+.rejilla { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.rejilla button { flex: 1 1 28%; min-width: 6.2rem; }
+.rejilla button.elegido {
+  background: rgba(var(--c), 0.15);
+  border-color: rgb(var(--c));
+  color: rgb(var(--c));
+}
+.rejilla button small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--suave);
+}
+
+/* Botones de clase llevan el color de su clase */
+.rejilla button[class*="c-"] { color: rgb(var(--c)); border-color: rgba(var(--c), 0.5); }
+
+/* Títulos de cada grupo dentro del panel (ejes del sustantivo, etc.) */
+.panel .grupo-titulo { font-size: 0.8rem; color: var(--suave); margin: 0.6rem 0 0.25rem; }
+.panel .nivel { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.panel .nivel .clase-actual { font-weight: 700; color: rgb(var(--c)); }
+.panel .pie { margin-top: 0.7rem; }

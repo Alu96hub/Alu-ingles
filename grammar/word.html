@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Word classes — Inglés</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="word-classes.css">
+</head>
+<body>
+  <main class="contenedor">
+    <div class="migas">
+      <a href="../../index.html">Inicio</a> /
+      <a href="../index.html">Grammar</a> /
+      Word classes
+    </div>
+
+    <h1>Word classes</h1>
+    <p class="sub">Tocá una palabra y clasificala en el panel inferior. Hay que clasificar todas.</p>
+
+    <!-- Ayuda desplegable -->
+    <details class="ayuda">
+      <summary>Cómo se usa</summary>
+      <ul>
+        <li>Tocá una palabra: se abre el panel. Elegí la clase y después el subtipo.</li>
+        <li>En los sustantivos comunes hay que elegir también concrete/abstract y countable/uncountable.</li>
+        <li>Al completar una palabra, el panel pasa solo a la siguiente. Con ‹ y › te movés a mano.</li>
+        <li>Las contracciones están separadas: <em>I’ll</em> = <em>I</em> + <em>’ll</em>, <em>didn’t</em> = <em>did</em> + <em>n’t</em>.</li>
+        <li>Posesivos y demostrativos junto a un sustantivo (<em>my</em>, <em>these</em>) son determiners.</li>
+        <li>Todas las palabras de un nombre propio (<em>Camp Wonderful</em>) son proper noun.</li>
+        <li>“Other” sirve para el <em>to</em> del infinitivo y para el <em>there</em> existencial.</li>
+      </ul>
+    </details>
+
+    <!-- Acá el script dibuja las 5 oraciones -->
+    <div id="lista"></div>
+
+    <div class="acciones">
+      <button id="btn-corregir" type="button">Corregir</button>
+      <button id="btn-nuevo" type="button" class="secundario">Nuevo set de 5</button>
+      <span id="puntaje" class="puntaje" aria-live="polite"></span>
+    </div>
+  </main>
+
+  <!-- Panel inferior: lo arma el script según la palabra seleccionada -->
+  <div id="panel" class="panel" hidden>
+    <div class="panel-cab">
+      <button id="p-ant" type="button" aria-label="Palabra anterior">‹</button>
+      <strong id="p-palabra"></strong>
+      <button id="p-sig" type="button" aria-label="Palabra siguiente">›</button>
+      <button id="p-cerrar" type="button">Cerrar</button>
+    </div>
+    <div id="p-cuerpo"></div>
+    <div class="pie">
+      <button id="p-quitar" type="button">Quitar respuesta</button>
+    </div>
+  </div>
+
+  <!-- Orden de carga: oraciones, respuestas y por último la lógica -->
+  <script src="../data/sentences.js"></script>
+  <script src="word-classes-data.js"></script>
+  <script src="word-classes.js"></script>
+</body>
+</html>
